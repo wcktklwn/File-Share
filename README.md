@@ -2,28 +2,42 @@
 
 Apache 2.4 in Docker, serving a folder as a browsable file listing with a custom directory-index theme.
 
-The container listens on port 80. Compose publishes it at [http://localhost:38080](http://localhost:38080).
+The container listens on port 80. The host port and the shared folder are set at deploy time. With the defaults, the listing is at [http://localhost:38080](http://localhost:38080).
 
-## Run
+## Deploy
+
+Copy the example env file and set the port and directory:
+
+```bash
+cp .env.example .env
+```
+
+```dotenv
+FILESHARE_PORT=38080
+FILESHARE_DIR=/path/to/files
+```
+
+Compose reads `.env` from this directory. That file is not committed. Exporting the same names in the shell overrides `.env` for one run.
 
 ```bash
 docker compose up --build
 ```
 
-Put files in `share/`. The listing updates on refresh. The mount is read-only inside the container.
+| Variable | Default | Purpose |
+| --- | --- | --- |
+| `FILESHARE_PORT` | `38080` | Host port mapped to port 80 in the container |
+| `FILESHARE_DIR` | `./share` | Host directory mounted read-only at `/srv/share` |
 
-To serve another directory, change the volume in `docker-compose.yml`:
-
-```yaml
-volumes:
-  - /path/to/files:/srv/share:ro
-```
+Use an absolute path for `FILESHARE_DIR` when deploying. The listing updates on refresh.
 
 Without Compose:
 
 ```bash
 docker build -t file-share .
-docker run --rm -p 38080:80 -v "$PWD/share:/srv/share:ro" file-share
+docker run --rm \
+  -p "${FILESHARE_PORT:-38080}:80" \
+  -v "${FILESHARE_DIR:-$PWD/share}:/srv/share:ro" \
+  file-share
 ```
 
 Apache runs as `www-data`. Files and directories need to be readable by others.
@@ -42,7 +56,8 @@ Apache runs as `www-data`. Files and directories need to be readable by others.
 | Path | Purpose |
 | --- | --- |
 | `Dockerfile` | `httpd:2.4-alpine` image, document root `/srv/share` |
-| `docker-compose.yml` | Build, port `38080`, and the `share/` mount |
+| `docker-compose.yml` | Build, `FILESHARE_PORT`, and the `FILESHARE_DIR` mount |
+| `.env.example` | Deploy-time variables to copy into `.env` |
 | `apache/fileshare.conf` | Directory index, icons, and access rules |
 | `theme/` | Stylesheet, icons, favicon, and listing footer |
 | `share/` | Sample files, replaced by the Compose volume at run time |
