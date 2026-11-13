@@ -2,7 +2,7 @@
 
 Apache 2.4 in Docker, serving a folder as a browsable file listing with a custom directory-index theme.
 
-The container listens on port 80. Compose publishes it at [http://localhost:8080](http://localhost:8080).
+The container listens on port 80. Compose publishes it at [http://localhost:38080](http://localhost:38080).
 
 ## Run
 
@@ -23,7 +23,7 @@ Without Compose:
 
 ```bash
 docker build -t file-share .
-docker run --rm -p 8080:80 -v "$PWD/share:/srv/share:ro" file-share
+docker run --rm -p 38080:80 -v "$PWD/share:/srv/share:ro" file-share
 ```
 
 Apache runs as `www-data`. Files and directories need to be readable by others.
@@ -42,7 +42,7 @@ Apache runs as `www-data`. Files and directories need to be readable by others.
 | Path | Purpose |
 | --- | --- |
 | `Dockerfile` | `httpd:2.4-alpine` image, document root `/srv/share` |
-| `docker-compose.yml` | Build, port `8080`, and the `share/` mount |
+| `docker-compose.yml` | Build, port `38080`, and the `share/` mount |
 | `apache/fileshare.conf` | Directory index, icons, and access rules |
 | `theme/` | Stylesheet, icons, favicon, and listing footer |
 | `share/` | Sample files, replaced by the Compose volume at run time |

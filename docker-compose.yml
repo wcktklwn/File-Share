@@ -4,7 +4,7 @@ services:
     image: file-share:local
     container_name: file-share
     ports:
-      - "8080:80"
+      - "38080:80"
     volumes:
       - ./share:/srv/share:ro
     restart: unless-stopped
