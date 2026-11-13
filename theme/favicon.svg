@@ -1,4 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="8" fill="#1a1612"/>
-  <path fill="#e2b15a" d="M7 13.2c0-1.1.9-2 2-2h4.4l1.7 1.9H23c1.1 0 2 .9 2 2V22c0 1.1-.9 2-2 2H9c-1.1 0-2-.9-2-2v-8.8z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Pirate ship">
+  <rect width="1024" height="1024" rx="228" fill="#2b2b2b"/>
+  <g fill="#e6e6e6">
+    <path d="M168 688c52 78 168 122 312 122h248c108 0 186-46 236-124l-62-18c-38 52-96 78-168 78H454c-112 0-204-32-252-78z"/>
+    <path d="M448 176h36v604h-36z"/>
+    <path d="M484 292c-16 6-196 86-228 214-26 104 10 176 62 214h166V292z"/>
+    <path d="M466 168l156 52-156 48z"/>
+    <path d="M484 488c92-8 188 36 236 150H484V488z"/>
+  </g>
+  <path fill="#2b2b2b" fill-rule="evenodd" d="M352 418a46 46 0 1 0 .2 0zM334 454a8 8 0 1 0 .15 0zM370 454a8 8 0 1 0 .15 0zM338 478c6 10 28 10 34 0 2 14-8 22-17 22s-19-8-17-22z"/>
+  <g fill="#2b2b2b">
+    <rect x="300" y="498" width="104" height="18" rx="9" transform="rotate(32 352 507)"/>
+    <rect x="300" y="498" width="104" height="18" rx="9" transform="rotate(-32 352 507)"/>
+  </g>
+  <path d="M210 868c78-40 132-40 210 0s132 40 210 0 132-40 210 0" fill="none" stroke="#8a8a8a" stroke-width="26" stroke-linecap="round"/>
 </svg>
