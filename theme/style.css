@@ -1,0 +1,244 @@
+:root {
+  --ink: #f4efe6;
+  --muted: #a89b88;
+  --brass: #e2b15a;
+  --brass-soft: #f0d7a2;
+  --line: rgba(244, 239, 230, 0.12);
+  --bg: #14120f;
+  --card: #1c1915;
+  --card-head: #242019;
+  --hover: rgba(226, 177, 90, 0.08);
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background-color: var(--bg);
+  background-image: radial-gradient(ellipse 90% 45% at 50% -12%, rgba(226, 177, 90, 0.11), transparent 58%);
+}
+
+body {
+  margin: 0 auto;
+  max-width: 920px;
+  padding: 52px 28px 72px;
+  color: var(--ink);
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #6e4c22, var(--brass) 38%, #f6e7c4 50%, var(--brass) 62%, #6e4c22);
+}
+
+#indextitle {
+  margin: 0 0 26px;
+  color: var(--ink);
+  font-family: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+  font-size: clamp(1.7rem, 3vw, 2.25rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+#indextitle::before {
+  content: "File share";
+  display: block;
+  margin-bottom: 10px;
+  color: var(--brass);
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+#indexlist {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--card);
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.28);
+  table-layout: fixed;
+}
+
+#indexlist th,
+#indexlist td {
+  padding: 13px 16px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+#indexlist .indexhead th {
+  background: var(--card-head);
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+#indexlist .indexhead th:first-child {
+  border-top-left-radius: 16px;
+}
+
+#indexlist .indexhead th:last-child {
+  border-top-right-radius: 16px;
+}
+
+#indexlist .indexhead a {
+  color: inherit;
+  text-decoration: none;
+}
+
+#indexlist .indexhead a:hover {
+  color: var(--brass-soft);
+}
+
+#indexlist tr:last-child td:first-child {
+  border-bottom-left-radius: 16px;
+}
+
+#indexlist tr:last-child td:last-child {
+  border-bottom-right-radius: 16px;
+}
+
+#indexlist td {
+  border-bottom: 1px solid var(--line);
+}
+
+#indexlist tr:last-child td {
+  border-bottom: 0;
+}
+
+#indexlist tr:not(.indexhead):hover td {
+  background: var(--hover);
+}
+
+.indexcolicon {
+  width: 52px;
+  padding-right: 0;
+}
+
+.indexcolicon a {
+  display: inline-flex;
+}
+
+.indexcolicon img {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.indexcolname {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.indexcolname a {
+  display: block;
+  overflow: hidden;
+  color: var(--ink);
+  font-size: 0.98rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.indexcolname a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--brass);
+  text-underline-offset: 3px;
+}
+
+tr[class$="-folder"] .indexcolname a,
+tr[class$="-parent"] .indexcolname a {
+  color: var(--brass-soft);
+  font-weight: 600;
+}
+
+tr[class$="-parent"] td {
+  border-bottom-color: rgba(226, 177, 90, 0.32);
+}
+
+tr[class$="-folder"] .indexcolsize,
+tr[class$="-parent"] .indexcolsize {
+  font-size: 0;
+}
+
+.indexcollastmod,
+.indexcolsize {
+  color: var(--muted);
+  font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.indexcolsize {
+  width: 6.5rem;
+  text-align: right;
+}
+
+.indexcollastmod {
+  width: 12rem;
+  text-align: right;
+}
+
+#indexlist a:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+.colophon {
+  margin: 18px 4px 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+}
+
+.colophon p {
+  margin: 0;
+}
+
+::selection {
+  background: var(--brass);
+  color: #1a140c;
+}
+
+@media (max-width: 680px) {
+  body {
+    padding: 36px 14px 48px;
+  }
+
+  .indexcollastmod,
+  .indexcolsize {
+    display: none;
+  }
+
+  .indexcolicon {
+    width: 36px;
+  }
+
+  #indexlist th,
+  #indexlist td {
+    padding: 12px 10px;
+  }
+}

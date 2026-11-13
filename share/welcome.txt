@@ -1,0 +1,4 @@
+This folder is the file share.
+
+Drop files and folders here. The listing updates on the next refresh.
+Subfolders keep the same index.

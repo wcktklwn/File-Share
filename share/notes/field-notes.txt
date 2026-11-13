@@ -1,0 +1,4 @@
+Shelf inventory
+- welcome note at the top of the share
+- a photograph stand-in under photos
+- a small archive under archive
