@@ -64,6 +64,7 @@ The package is private until its visibility is changed on GitHub. A private pack
 
 ## Listing behavior
 
+- Clicking a file downloads it. Folders still open as listings.
 - Every directory shows an index, including folders that contain `index.html`.
 - Folders are listed first. Column headers change the sort.
 - The listing shows the name and size. The last-modified column is omitted.
