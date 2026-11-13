@@ -42,11 +42,31 @@ docker run --rm \
 
 Apache runs as `www-data`. Files and directories need to be readable by others.
 
+## Prebuilt image
+
+Pushes to `main` build `linux/amd64` and `linux/arm64` images and publish them to GHCR. Pull requests build the image and do not push it.
+
+```text
+ghcr.io/wcktklwn/file-share:latest
+```
+
+Each `main` push is also tagged with its short commit SHA. A `v1.2.3` tag publishes `1.2.3` and `1.2`.
+
+```bash
+docker pull ghcr.io/wcktklwn/file-share:latest
+docker run --rm \
+  -p "${FILESHARE_PORT:-38080}:80" \
+  -v "${FILESHARE_DIR:-$PWD/share}:/srv/share:ro" \
+  ghcr.io/wcktklwn/file-share:latest
+```
+
+The package is private until its visibility is changed on GitHub. A private package needs `docker login ghcr.io` with a token that has `read:packages`.
+
 ## Listing behavior
 
 - Every directory shows an index, including folders that contain `index.html`.
 - Folders are listed first. Column headers change the sort.
-- On a narrow screen the date and size columns are hidden.
+- The listing shows the name and size. The last-modified column is omitted.
 - Dotfiles, `.DS_Store`, `Thumbs.db`, and editor backups are omitted and are not served.
 - Symlinks inside the share are not followed.
 - The theme is served from `/_theme/` and is not part of the share.
@@ -56,6 +76,7 @@ Apache runs as `www-data`. Files and directories need to be readable by others.
 | Path | Purpose |
 | --- | --- |
 | `Dockerfile` | `httpd:2.4-alpine` image, document root `/srv/share` |
+| `.github/workflows/docker-image.yml` | Build and publish the image on GitHub |
 | `docker-compose.yml` | Build, `FILESHARE_PORT`, and the `FILESHARE_DIR` mount |
 | `.env.example` | Deploy-time variables to copy into `.env` |
 | `apache/fileshare.conf` | Directory index, icons, and access rules |
